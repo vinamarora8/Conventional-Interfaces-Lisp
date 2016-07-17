@@ -69,3 +69,11 @@
 		((stream-null? s2)	s1)
 		(else	(cons-stream	(+ (stream-car  s1) (stream-car s2))
 					(add-streams (stream-cdr s1) (stream-cdr s2))))))
+
+;;; Print nth element of the stream
+(define (print-stream-nth n s)
+	(if	(null? s)
+		(error "Stream doesn't have " n 'elements)
+		(if	(= n 0)
+			(write (stream-car s))
+			(print-stream-nth (-1+ n) (stream-cdr s)))))
